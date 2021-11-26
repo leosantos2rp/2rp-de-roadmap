@@ -2,19 +2,6 @@
 
 # when passing path as argument in bash, please use single quotes
 # to avoid backslash problems. Ex: 'C:\Users\some-folder'
-:<<'COMMENT'
-lista_arquivos2(){
-	vector=()
-	var1=$1
-	# replace '\' with '/'
-	var="${var1//\\//}"
-	find  $var -type f -print0 | while read -d $'\0' file; do
-  	echo "Processing $file"
-  	vector=( "${vector[@]}" "$aux" )
-  	done
-  	echo ${#vector[@]}
-}
-COMMENT
 # find all files under given directory and putting them into an array
 lista_arquivos(){
 	# empty array
@@ -48,16 +35,6 @@ ler2(){
 insere_texto(){
 	echo "$2" >> $1
 }
-
-:<<'COMMENT'
-replace(){
-	var1=$1
-	var="${var1//\\//}"
-	echo $var
-}
-COMMENT
-
-#replace $1
 #lista_arquivos $1
 #ler
 #insere_texto $1 $2
