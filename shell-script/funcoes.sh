@@ -27,6 +27,3 @@ ler(){
 insere_texto(){
 	echo "$2" >> $1
 }
-#lista_arquivos $1
-#ler
-#insere_texto $1 $2
