@@ -16,15 +16,7 @@ lista_arquivos(){
 	done < <(find $var -type f -print0)
 }
 
-# read files path
 ler(){
-	for i in ${vector[@]}; do
-		echo "$i"
-	done
-	echo ${#vector[@]} "arquivos"
-}
-
-ler2(){
 	for i in ${vector[@]}; do
 		insere_texto $i "$1"
 	done
