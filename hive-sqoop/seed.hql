@@ -42,7 +42,10 @@ DROP TABLE temp_generation_leonardo_santos;
 DROP TABLE temp_pokemon_leonardo_santos
 
 -- JOIN
-SELECT P.name, G.date_introduced
+SELECT P.name, G.generation
 FROM pokemon_Leonardo_Santos P 
 JOIN generation_Leonardo_Santos G 
 ON P.generation = G.generation
+
+-- It took 1.45s to run this join using impala
+-- However, Hive took 40.54s running the same query
