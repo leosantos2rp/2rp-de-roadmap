@@ -19,19 +19,19 @@ with DAG(dag_id='de_leonardo_santos_dev',
         schedule_interval=None,
         default_args=default_args,
         catchup=False) as dag:
-    t1 = DummyOperator(
+    dummy_task = DummyOperator(
         task_id='dummy',
     )
-    t2 = BashOperator(
+    kinit_task = BashOperator(
         task_id='kinit',
         bash_command=f'kinit -kt /home/{usuario}/{usuario}.keytab {usuario}',
     )
-    t3 = BashOperator(
+    shell_task = BashOperator(
         task_id='shell',
         bash_command=f'bash /home/{usuario}/shell-scripts/executar.sh ' \
             f'"/home/{usuario}/shell-scripts/test" "some text"'
     )
-    t4 = TwoRPSparkSubmitOperator(
+    spark_task = TwoRPSparkSubmitOperator(
         task_id='spark',
         name='pokemon',
         conn_id='spark_conn',
@@ -42,5 +42,5 @@ with DAG(dag_id='de_leonardo_santos_dev',
         verbose=True
     )
 
-    t1 >> t2 >> t3 >> t4
+    dummy_task >> kinit_task >> shell_task >> spark_task
 
